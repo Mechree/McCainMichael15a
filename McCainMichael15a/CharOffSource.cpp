@@ -13,19 +13,25 @@ char Character(CHAR start, int offset)
 {
 	// 65 - 90 = A - Z; 97 - 122 = a-z;
 	string invalidCharacterException = "\nError: Invalid character used. Please enter only alpha keys (A-Z,a-z)>";
-	string invalidRangeException = "\nError: Invalid character used. Please enter only positive integers>";
+	string invalidRangeException = "\nError: Invalid character range. Please try again (try a lower offset value)>";
+
 	if (isdigit(start) || ispunct(start))
 	{
 		throw invalidCharacterException;
 	}
-	if (offset < 0)
+
+	int ckStart = (start + offset);
+
+	if (start >= 65 && start <= 90 && ckStart > 90 || ckStart < 65)
 	{
 		throw invalidRangeException;
 	}
-	else 
+	else if (start >= 97 && start <= 122 && ckStart > 122 || ckStart < 97)
 	{
-	start = (start + offset);
+		throw invalidRangeException;
 	}
+
+	start = (start + offset);
 	return start;
 }
 
@@ -54,10 +60,6 @@ int main()
 		{
 			cout << invalidCharacterException;
 		}
-
-		//catch (string invalidRangeException) {
-		//	cout << invalidRangeException;
-		//}
 	}
 
 	char letter = Character('a', 1);
