@@ -11,7 +11,7 @@ using namespace std;
 template<typename CHAR>
 char Character(CHAR start, int offset)
 {
-	// 101 - 132 = A - Z; 141 - 172 = a-z;
+	// 65 - 90 = A - Z; 97 - 122 = a-z;
 	string invalidCharacterException = "\nError: Invalid character used. Please enter only alpha keys (A-Z,a-z)>";
 	string invalidRangeException = "\nError: Invalid character used. Please enter only positive integers>";
 	if (isdigit(start) || ispunct(start))
@@ -40,10 +40,13 @@ int main()
 		try {
 			cout << "\nEnter a letter>";
 			cin >> ch;
+
 			cout << "\nEnter a offset number>";
 			cin >> offSet;
+
 			char letter = Character(ch, offSet);
 			cout << letter;
+
 			cout << "\nEnter 1 for another number, else enter 0>";
 			cin >> again;
 		}
@@ -51,9 +54,10 @@ int main()
 		{
 			cout << invalidCharacterException;
 		}
-		catch (string invalidRangeException) {
-			cout << invalidRangeException;
-		}
+
+		//catch (string invalidRangeException) {
+		//	cout << invalidRangeException;
+		//}
 	}
 
 	char letter = Character('a', 1);
