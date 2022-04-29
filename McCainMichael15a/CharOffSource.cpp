@@ -11,7 +11,8 @@ using namespace std;
 template<typename CHAR>
 char Character(CHAR start, int offset)
 {
-	// 65 - 90 = A - Z; 97 - 122 = a-z;
+	// 65 - 90 = A - Z; 
+	// 97 - 122 = a-z;
 	string invalidCharacterException = "\nError: Invalid character used. Please enter only alpha keys (A-Z,a-z)>";
 	string invalidRangeException = "\nError: Invalid character range. Please try again (try a lower offset value)>";
 
@@ -22,11 +23,11 @@ char Character(CHAR start, int offset)
 
 	int ckStart = (start + offset);
 
-	if (start >= 65 && start <= 90 && ckStart > 90 || ckStart < 65)
+	if ((start >= 65 && start <= 90) && (ckStart > 90 || ckStart < 65))
 	{
 		throw invalidRangeException;
 	}
-	else if (start >= 97 && start <= 122 && ckStart > 122 || ckStart < 97)
+	else if ((start >= 97 && start <= 122) && (ckStart > 122 || ckStart < 97))
 	{
 		throw invalidRangeException;
 	}
@@ -39,15 +40,16 @@ char Character(CHAR start, int offset)
 int main()
 {
 	bool again = true;
-	char ch = ' ';
+	char ch;
 	int offSet = 0;
 	while (again)
 	{
 		try {
 			cout << "\nEnter a letter>";
 			cin >> ch;
+			cin.ignore();
 
-			cout << "\nEnter a offset number>";
+			cout << "Enter a offset number>";
 			cin >> offSet;
 
 			char letter = Character(ch, offSet);
@@ -61,9 +63,6 @@ int main()
 			cout << invalidCharacterException;
 		}
 	}
-
-	char letter = Character('a', 1);
-	cout << "\n" << letter;
 	
 	cout << endl << endl;
 	system("pause");
